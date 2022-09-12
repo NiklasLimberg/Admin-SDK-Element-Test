@@ -1,0 +1,7 @@
+{% block element_dailymotion %}
+    {%  set config = element.fieldConfig.elements %}
+
+    <div class="cms-element-{{ element.type }}">
+        {{ dump(element) }}
+    </div>
+{% endblock %}
