@@ -6,6 +6,7 @@
     Video-Code: <input v-model="dailyUrl" type="text"/><br/>
 </div>
 </template>
+
 <script lang="ts" setup>
 import {ref, computed, onMounted} from 'vue'
 import { data } from "@shopware-ag/admin-extension-sdk";
@@ -13,7 +14,9 @@ import { CONSTANTS } from "../constants";
 
 interface DailymotionConfig {
     config?: {
-        dailyUrl?: string
+        dailyUrl?: {
+            value?: string
+        }
     }
 }
 
@@ -21,27 +24,29 @@ const element = ref<DailymotionConfig | null>({});
 
 const dailyUrl = computed({
     get() {
-        return element?.value?.config?.dailyUrl || '';
+        return element?.value?.config?.dailyUrl?.value || '';
     },
     set(value: string): void {
-        if(typeof element.value?.config !== 'object') {
+        if(typeof element.value?.config?.dailyUrl !== 'object') {
             element.value = {};
             element.value.config = {};
+            element.value.config.dailyUrl = {}
+
         }
 
-        element.value.config.dailyUrl = value;
+        element.value.config.dailyUrl.value = value;
 
         data.update({
             id: CONSTANTS.PUBLISHING_KEY,
-            data: element,
+            data: element.value,
         });
     }
 });
 
 onMounted(async () => {
-    const initalData = await data.get({ id: CONSTANTS.PUBLISHING_KEY });
-    if (typeof initalData === 'object') { 
-        element.value = initalData;
+    const initialData = await data.get({ id: CONSTANTS.PUBLISHING_KEY });
+    if (typeof initialData === 'object') { 
+        element.value = initialData;
     }
 });
 </script>

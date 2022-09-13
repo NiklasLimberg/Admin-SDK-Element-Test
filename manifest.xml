@@ -8,16 +8,17 @@
         <description lang="de-DE">Eine Beschreibung</description>
         <author>Your Company Ltd.</author>
         <copyright>(c) by Your Company Ltd.</copyright>
-        <version>1.0.3</version>
+        <version>1.0.12</version>
         <icon>Resources/config/plugin.png</icon>
         <license>MIT</license>
     </meta>
 
     <setup>
         <secret>01f17b06402f0a24e6d2b084a6d18a87</secret>
+        <registrationUrl>http://localhost:3001/authorize</registrationUrl>
     </setup>
 
     <admin>
-        <base-app-url>http://localhost:3000/index.html</base-app-url>
+        <base-app-url>http://localhost:3000/</base-app-url>
     </admin>
 </manifest>

@@ -24,14 +24,16 @@ import { CONSTANTS } from "../constants";
 
 interface DailymotionConfig {
     config?: {
-        dailyUrl?: string
+        dailyUrl?: {
+            value?: string
+        }
     }
 }
 
 const element = ref<DailymotionConfig|null>(null)
 
 const dailyUrl = computed(() => {
-    return `https://www.dailymotion.com/embed/video/${element?.value?.config?.dailyUrl || ''}`;
+    return `https://www.dailymotion.com/embed/video/${element?.value?.config?.dailyUrl?.value || ''}`;
 });
 
 function elementSubscriber(response: { data: unknown, id: string }): void {
@@ -42,10 +44,10 @@ function elementSubscriber(response: { data: unknown, id: string }): void {
 }
 
 onMounted(async () => {
-    const initalData = await data.get({ id: CONSTANTS.PUBLISHING_KEY });
+    const initialData = await data.get({ id: CONSTANTS.PUBLISHING_KEY });
     
-    if(typeof initalData === 'object') { 
-        element.value = initalData;
+    if(typeof initialData === 'object') { 
+        element.value = initialData;
     }
     
     data.subscribe(CONSTANTS.PUBLISHING_KEY, elementSubscriber);
