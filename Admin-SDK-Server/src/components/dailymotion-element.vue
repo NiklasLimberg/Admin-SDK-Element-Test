@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, onMounted  } from 'vue'
+import { ref, computed, onMounted  } from 'vue';
 import { data } from "@shopware-ag/admin-extension-sdk";
 import { CONSTANTS } from "../constants";
 

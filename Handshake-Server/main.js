@@ -5,8 +5,7 @@ import { InMemoryShopRepository } from "shopware-app-server-sdk/repository.js";
 import { convertRequest, convertResponse, rawRequestMiddleware } from 'shopware-app-server-sdk/runtime/node/express.js';
 import { NodeHmacSigner } from 'shopware-app-server-sdk/runtime/node/signer.js';
 
-
-import nodeFetch from 'node-fetch'
+import nodeFetch from 'node-fetch';
 globalThis.fetch = nodeFetch;
 
 const app = express();
@@ -35,5 +34,5 @@ app.post('/authorize/callback', async (req, res) => {
 
 
 app.listen(3001, () => {
-    console.log(`App listening at 3001`)
+    console.log(`App listening at 3001`);
 })
