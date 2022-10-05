@@ -1,5 +1,5 @@
 import { cms, location } from '@shopware-ag/admin-extension-sdk';
-import { CONSTANTS }  from './constants';
+import { CONSTANTS } from './constants';
 
 import { createApp } from 'vue';
 import App from './App.vue';
@@ -15,9 +15,9 @@ void cms.registerCmsElement({
     },
 });
 
-console.log('AAAAAAA')
+console.log('[CustomElementTest] Dailymotion component registered successfully');
 
 // watch for height changes
 location.startAutoResizer();
 
-createApp(App).mount('#extension')
+createApp(App).mount('#extension');

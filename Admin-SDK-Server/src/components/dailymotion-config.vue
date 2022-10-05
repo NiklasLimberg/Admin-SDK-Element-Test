@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-import {ref, computed, onMounted} from 'vue'
+import { ref, computed, onMounted } from 'vue';
 import { data } from "@shopware-ag/admin-extension-sdk";
 import { CONSTANTS } from "../constants";
 
@@ -31,7 +31,6 @@ const dailyUrl = computed({
             element.value = {};
             element.value.config = {};
             element.value.config.dailyUrl = {}
-
         }
 
         element.value.config.dailyUrl.value = value;

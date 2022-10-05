@@ -6,11 +6,10 @@
     </div>
 </template>
 
-
 <script lang="ts" setup>
 import { location } from '@shopware-ag/admin-extension-sdk';
 
-import DailymotionElement from './components/dailymotion-element.vue'
-import DailymotionPreview from './components/dailymotion-preview.vue'
-import DailymotionConfig from './components/dailymotion-config.vue'
+import DailymotionElement from './components/dailymotion-element.vue';
+import DailymotionPreview from './components/dailymotion-preview.vue';
+import DailymotionConfig from './components/dailymotion-config.vue';
 </script>
