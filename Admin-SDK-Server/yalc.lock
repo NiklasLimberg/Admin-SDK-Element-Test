@@ -1,0 +1,10 @@
+{
+  "version": "v1",
+  "packages": {
+    "@shopware-ag/admin-extension-sdk": {
+      "signature": "36b1e6569b86eb8443dfeaae2042bb43",
+      "file": true,
+      "replaced": "^2.3.0"
+    }
+  }
+}

@@ -10,15 +10,17 @@
 <script lang="ts" setup>
 import { ref, computed, onMounted } from 'vue';
 import { data } from "@shopware-ag/admin-extension-sdk";
-import { CONSTANTS } from "../constants";
 
 interface DailymotionConfig {
     config?: {
         dailyUrl?: {
+            source?: string
             value?: string
         }
     }
 }
+
+const props = defineProps<{ publishingKey: string }>();
 
 const element = ref<DailymotionConfig | null>({});
 
@@ -34,18 +36,21 @@ const dailyUrl = computed({
         }
 
         element.value.config.dailyUrl.value = value;
+        element.value.config.dailyUrl.source = 'static';
 
         data.update({
-            id: CONSTANTS.PUBLISHING_KEY,
+            id: props.publishingKey,
             data: element.value,
         });
     }
 });
 
 onMounted(async () => {
-    const initialData = await data.get({ id: CONSTANTS.PUBLISHING_KEY });
-    if (typeof initialData === 'object') { 
-        element.value = initialData;
-    }
+    console.log(props.publishingKey);
+    data.subscribe(props.publishingKey, (initialData) => {
+        if (typeof initialData.data === 'object') { 
+            element.value = initialData.data;
+        }
+    });
 });
 </script>

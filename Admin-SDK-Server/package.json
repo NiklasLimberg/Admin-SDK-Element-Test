@@ -9,7 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@shopware-ag/admin-extension-sdk": "^2.3.0",
+    "@shopware-ag/admin-extension-sdk": "file:.yalc/@shopware-ag/admin-extension-sdk",
+    "localforage": "^1.10.0",
     "vue": "^3.2.39"
   },
   "devDependencies": {
