@@ -5,13 +5,7 @@
     </h2>
     <div class="sw-cms-el-dailymotion">
         <div class="sw-cms-el-dailymotion-iframe-wrapper">
-            <iframe
-                frameborder="0"
-                type="text/html"
-                width="100%"
-                height="100%"
-                :src="dailyUrl">
-            </iframe>
+            {{ dailyUrl }}
         </div>
     </div>
 </div>
@@ -20,12 +14,14 @@
 <script lang="ts" setup>
 import { ref, computed, onMounted  } from 'vue';
 import { data } from "@shopware-ag/admin-extension-sdk";
-import { CONSTANTS } from "../constants";
+
+const props = defineProps<{publishingKey: string}>();
 
 interface DailymotionConfig {
     config?: {
         dailyUrl?: {
-            value?: string
+            value?: string,
+            source?: string,
         }
     }
 }
@@ -44,12 +40,12 @@ function elementSubscriber(response: { data: unknown, id: string }): void {
 }
 
 onMounted(async () => {
-    const initialData = await data.get({ id: CONSTANTS.PUBLISHING_KEY });
+    const initialData = await data.get({ id: props.publishingKey });
     
     if(typeof initialData === 'object') { 
         element.value = initialData;
     }
     
-    data.subscribe(CONSTANTS.PUBLISHING_KEY, elementSubscriber);
+    data.subscribe(props.publishingKey, elementSubscriber);
 });
 </script>
