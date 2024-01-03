@@ -42,10 +42,11 @@ const dailyUrl = computed({
     }
 });
 
-onMounted(async () => {
-    const initialData = await data.get({ id: CONSTANTS.PUBLISHING_KEY });
-    if (typeof initialData === 'object') { 
-        element.value = initialData;
-    }
+onMounted(() => {
+    data.subscribe(CONSTANTS.PUBLISHING_KEY, ({ data }) => {
+        if (typeof data === 'object') { 
+            element.value = data;
+        }
+    });
 });
 </script>
